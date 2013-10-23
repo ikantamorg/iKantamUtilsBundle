@@ -1,0 +1,9 @@
+parameters:
+   ikantam.utils.twig.extensions.class: iKantam\Bundles\UtilsBundle\Twig\UtilsExtension
+
+services:
+     ikantam.utils.twig.extensions:
+        class: %ikantam.utils.twig.extensions.class%
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }

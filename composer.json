@@ -1,6 +1,5 @@
 {
     "name": "ikantam/utils-bundle",
-    "description": "",
     "keywords": ["utils"],
     "type": "symfony-bundle",
     "license": "MIT",
@@ -15,11 +14,5 @@
     "autoload": {
         "psr-0": { "iKantam\\Bundles\\UtilsBundle": "" }
     },
-    "target-dir": "iKantam/Bundles/UtilsBundle",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0.x-dev"
-        }
-    },
-    "minimum-stability": "dev"
+    "target-dir": "iKantam/Bundles/UtilsBundle"
 }

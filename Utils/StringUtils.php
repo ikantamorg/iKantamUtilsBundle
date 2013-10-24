@@ -8,14 +8,18 @@
 namespace iKantam\UtilsBundle\Utils;
 
 
-class StringUtils {
+class StringUtils
+{
 
-    private static  $password_allow_chars = 'abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#%$*';
+    private static $password_allow_chars = 'abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#%$*';
 
     /**
      * This class should not be instantiated
      */
-    private function __construct() {}
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -25,34 +29,52 @@ class StringUtils {
      *
      * @return string
      */
-    public static function generatePassword($length = 12){
+    public static function generatePassword($length = 12)
+    {
         $pwd = str_shuffle(self::$password_allow_chars);
 
-        return substr($pwd,0,$length);
+        return substr($pwd, 0, $length);
     }
 
     /**
-     * Camelize string
-     * 
-     * @param string $word
-     * @return string
+     * Replace tokens in given string
+     *
+     * @param $text
+     * @param array $replacement
+     * @param string $token_symbol
+     * @param string $wrap_side
+     *
+     * @return mixed
      */
-    public static function stringCamelize($word) { 
-        return preg_replace('/(^|_)([a-z])/e', 'strtoupper("\\2")', $word); 
-    }
+    public static function tokensReplace($text, array $replacement, $token_symbol = '%', $wrap_side = 'both')
+    {
+        $wrap_side = strtolower($wrap_side);
 
-    /**
-     * Decamelize string
-     * 
-     * @param string $word
-     * @return string
-     */
-    public static function stringDecamelize($word) {
-        return preg_replace(
-            '/(^|[a-z])([A-Z])/e', 
-            'strtolower(strlen("\\1") ? "\\1_\\2" : "\\2")',
-            $word 
-        ); 
+        switch($wrap_side){
+            case 'left':
+                $callback = function ($key) use ($token_symbol) {
+                    return $token_symbol.$key;
+                };
+                break;
+            case 'right':
+                $callback = function ($key) use ($token_symbol) {
+                    return $key.$token_symbol;
+                };
+                break;
+            default:
+                $callback = function ($key) use ($token_symbol) {
+                    return $token_symbol.$key.$token_symbol;
+                };
+                break;
+        }
+
+        foreach ($replacement as $key => $replace) {
+            $search = $callback($key);
+            $text = str_replace($search, $replace, $text);
+        }
+
+        return $text;
+
     }
 
 }

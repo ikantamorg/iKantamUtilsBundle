@@ -1,0 +1,18 @@
+{
+    "name": "ikantam/utils-bundle",
+    "keywords": ["utils"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LightSuner"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "~2.0"
+    },
+    "autoload": {
+        "psr-0": { "iKantam\\Bundles\\UtilsBundle": "" }
+    },
+    "target-dir": "src"
+}

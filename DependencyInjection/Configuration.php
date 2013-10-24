@@ -1,6 +1,6 @@
 <?php
 
-namespace iKantam\Bundles\UtilsBundle\DependencyInjection;
+namespace iKantam\UtilsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

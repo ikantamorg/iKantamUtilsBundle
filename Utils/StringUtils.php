@@ -5,7 +5,7 @@
  * Time: 17:58
  */
 
-namespace iKantam\Bundles\UtilsBundle\Utils;
+namespace iKantam\UtilsBundle\Utils;
 
 
 class StringUtils {

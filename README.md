@@ -15,8 +15,8 @@ Add on composer.json (see http://getcomposer.org/)
 
 ```
 "require" :  {
-// ...
-"ikantam/utils-bundle":"dev-develop",
+    // ...
+    "ikantam/utils-bundle":"dev-develop",
 }
 ```
 To start using the bundle, register it in your Kernel:
@@ -29,7 +29,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+        new iKantam\UtilsBundle\UtilsBundle(),
     );
     // ...
 }
@@ -41,7 +41,7 @@ public function registerBundles()
 Add namespace
 
 ````
-use iKantam\Bundles\UtilsBundle\Utils\StringUtils;
+use iKantam\UtilsBundle\Utils\StringUtils;
 ````
 
 #### Randpm password generator:

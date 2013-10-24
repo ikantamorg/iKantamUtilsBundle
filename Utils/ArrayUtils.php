@@ -1,8 +1,8 @@
 <?php
 
-namespace iKantam\Bundles\UtilsBundle\Utils;
+namespace iKantam\UtilsBundle\Utils;
 
-use iKantam\Bundles\UtilsBundle\Utils\StringUtils as Str;
+use iKantam\UtilsBundle\Utils\StringUtils as Str;
 
 class ArrayUtils {
 

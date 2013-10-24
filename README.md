@@ -1,10 +1,10 @@
-# iKantam Utils Bundle for symfony 2
+# iKantam Utils Bundle (for symfony 2)
 
 ### Basic Docs
 
 * [Installation](#installation)
 
-### Utls
+### Utils
 
 * [String Utils](#stringutils)
 * [Twig Utils](#twigutils)

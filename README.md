@@ -29,7 +29,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+        new iKantam\UtilsBundle\UtilsBundle(),
     );
     // ...
 }

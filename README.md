@@ -1,12 +1,13 @@
-# iKantam Utils Bundle for symfony 2
+# iKantam Utils Bundle (for symfony 2)
 
 ### Basic Docs
 
 * [Installation](#installation)
 
-### Utls
+### Utils
 
 * [String Utils](#stringutils)
+* [Twig Utils](#twigutils)
 
 <a name="installation"></a>
 ## Installation
@@ -44,7 +45,7 @@ Add namespace
 use iKantam\UtilsBundle\Utils\StringUtils;
 ````
 
-#### Randpm password generator:
+#### Random password generator:
 <br>
 to generate a random password, use:
 ````

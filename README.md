@@ -12,12 +12,12 @@
 ## Installation
 
 Add on composer.json (see http://getcomposer.org/)
-
+````
 "require" :  {
 // ...
 "ikantam/utils-bundle":"dev-develop",
 }
-
+````
 To start using the bundle, register it in your Kernel:
 
 ``` php

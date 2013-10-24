@@ -1,6 +1,6 @@
 <?php
 
-namespace iKantam\Bundles\UtilsBundle;
+namespace iKantam\UtilsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

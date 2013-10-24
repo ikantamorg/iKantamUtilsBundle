@@ -1,5 +1,5 @@
 parameters:
-   ikantam.utils.twig.extensions.class: iKantam\Bundles\UtilsBundle\Twig\UtilsExtension
+   ikantam.utils.twig.extensions.class: iKantam\UtilsBundle\Twig\UtilsExtension
 
 services:
      ikantam.utils.twig.extensions:

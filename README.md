@@ -41,7 +41,7 @@ public function registerBundles()
 Add namespace
 
 ````
-use iKantam\Bundles\UtilsBundle\Utils\StringUtils;
+use iKantam\UtilsBundle\Utils\StringUtils;
 ````
 
 #### Randpm password generator:

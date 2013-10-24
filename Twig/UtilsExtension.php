@@ -5,7 +5,7 @@
  * Time: 16:49
  */
 
-namespace iKantam\Bundles\UtilsBundle\Twig;
+namespace iKantam\UtilsBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig_Extension;

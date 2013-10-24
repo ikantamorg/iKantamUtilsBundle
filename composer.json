@@ -14,5 +14,5 @@
     "autoload": {
         "psr-0": { "iKantam\\Bundles\\UtilsBundle": "" }
     },
-    "target-dir": "iKantam/Bundles/UtilsBundle"
+    "target-dir": "src"
 }

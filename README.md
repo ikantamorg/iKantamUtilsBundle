@@ -16,8 +16,8 @@ Add on composer.json (see http://getcomposer.org/)
 
 ```
 "require" :  {
-    // ...
-    "ikantam/utils-bundle":"dev-master",
+// ...
+"ikantam/utils-bundle":"dev-develop",
 }
 ```
 To start using the bundle, register it in your Kernel:
@@ -81,14 +81,35 @@ $replaced_text = StringUtils::tokensReplace($text, $tokens);
 <a name="twigutils"></a>
 ## Twig Utils
 #### Absolute Url:
-<br>
+
 if you need to use absolute url in twig template - just add "absolute url" filter
+
 ````
 {{ 'foo/bar'|absolute_url }} // --> http://absoluteurlpath/foo/bar
 ````
 #### JSON decode:
-<br>
+
 if you need to decode json in twig template - just add "json_decode" filter to json
+
 ````
 {% set Image = child.vars.label | json_decode %} // child.vars.label contains json data
+````
+
+#### FOS JsRoutingBundle Options:
+
+Do you use FOSJsRoutingBundle? Do you try to configure it for some different environments?
+
+``{{ fos_js_routes_options() }}``  -  will save you from these problems.
+
+It will setup: ``base_url``, ``scheme``, ``host``, ``prefix``.
+
+Add code below to your base layout:
+
+````
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ asset('path_to/routes.js') }}"></script>
+// ...
+<script>
+    {{ fos_js_routes_options() }}
+</script>
 ````

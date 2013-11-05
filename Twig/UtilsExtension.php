@@ -10,6 +10,7 @@ namespace iKantam\UtilsBundle\Twig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig_Extension;
 use Twig_SimpleFilter;
+use Twig_SimpleFunction;
 
 class UtilsExtension extends Twig_Extension
 {
@@ -46,6 +47,27 @@ class UtilsExtension extends Twig_Extension
     }
 
     /**
+     * {@inherited}
+     */
+    public function getFunctions()
+    {
+        return [
+            new Twig_SimpleFunction(
+                'fos_js_routes_options',
+                [
+                    $this,
+                    'fosJsRoutesOptions'
+                ],
+                [
+                    'is_safe' => [
+                        'html'
+                    ]
+                ]
+            ),
+        ];
+    }
+
+    /**
      * Provide filter that add absolute url before string
      *
      * @param $url
@@ -70,5 +92,50 @@ class UtilsExtension extends Twig_Extension
      */
     public function filterJSONDecode($json_string){
         return json_decode($json_string);
+    }
+
+    /**
+     * Setup FOS JsRoutingBundle config for current request
+     *
+     * @return string
+     */
+    public function fosJsRoutesOptions()
+    {
+        $default_options = [
+            'e' => '', // base_url
+            'scheme' => '', //
+            'host' => '', //
+            'prefix' => '', // locale -???
+        ];
+
+        $confParameter = 'router.request_context.base_url';
+
+        if ($this->container->hasParameter($confParameter)) {
+            $default_options['e'] = $this->container->getParameter($confParameter);
+        }
+
+        $request = $this->container->get('request');
+
+        if (empty($default_options['e'])) {
+            $default_options['e'] = $request->getBaseUrl();
+        }
+
+        $default_options['scheme'] = $request->getScheme();
+
+        $default_options['host'] = $request->getHost();
+
+        $port = $request->getPort();
+
+        if (!in_array($port, [80, 443])) {
+            $default_options['host'] .= ':'.$port;
+        }
+
+        $default_options['prefix'] = $request->getLocale();
+
+        $output = 'if (undefined != fos) {';
+        $output .= '    fos.Router.j.b = '.json_encode($default_options);
+        $output .= '}';
+
+        return $output;
     }
 }

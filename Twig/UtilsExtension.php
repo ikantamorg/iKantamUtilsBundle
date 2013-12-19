@@ -83,10 +83,10 @@ class UtilsExtension extends Twig_Extension
 
         $absoluteUrl = $routerContext->getScheme().'://'.$routerContext->getHost();
 
-        if ($secure && !empty($routerContext->getHttpsPort()) && $routerContext->getHttpsPort() != 443) {
-            $absoluteUrl .= ':'.$routerContext->getHttpsPort();
-        } elseif (!$secure && !empty($routerContext->getHttpPort()) && $routerContext->getHttpPort() != 80) {
-            $absoluteUrl .= ':'.$routerContext->getHttpPort();
+        $port = $secure ? $routerContext->getHttpsPort(): $routerContext->getHttpPort();
+
+        if (!empty($port) && (($secure && $port != 443) || (!$secure && $port != 80))) {
+            $absoluteUrl .= ':'.$port;
         }
 
         return $absoluteUrl.$url;

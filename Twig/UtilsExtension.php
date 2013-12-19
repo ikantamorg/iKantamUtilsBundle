@@ -77,10 +77,19 @@ class UtilsExtension extends Twig_Extension
     public function filterAbsoluteUrl($url)
     {
         $request = $this->container->get('request');
+        $routerContext = $this->container->get('router')->getContext();
 
-        $base_absolute_url = $request->getSchemeAndHttpHost();
+        $secure = $request->isSecure();
 
-        return $base_absolute_url.$url;
+        $absoluteUrl = $routerContext->getScheme().'://'.$routerContext->getHost();
+
+        if ($secure && !empty($routerContext->getHttpsPort()) && $routerContext->getHttpsPort() != 443) {
+            $absoluteUrl .= ':'.$routerContext->getHttpsPort();
+        } elseif (!$secure && !empty($routerContext->getHttpPort()) && $routerContext->getHttpPort() != 80) {
+            $absoluteUrl .= ':'.$routerContext->getHttpPort();
+        }
+
+        return $absoluteUrl.$url;
     }
 
     /**

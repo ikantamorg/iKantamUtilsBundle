@@ -99,8 +99,8 @@ class UtilsExtension extends Twig_Extension
      *
      * @return mixed
      */
-    public function filterJSONDecode($json_string){
-        return json_decode($json_string);
+    public function filterJSONDecode($jsonString){
+        return json_decode($jsonString);
     }
 
     /**
@@ -110,45 +110,30 @@ class UtilsExtension extends Twig_Extension
      */
     public function fosJsRoutesOptions()
     {
-        $default_options = [
-            'e' => '', // base_url
-            'scheme' => '', //
-            'host' => '', //
-            'prefix' => '', // locale -???
-        ];
-
-        $confParameter = 'router.request_context.base_url';
-
-        if ($this->container->hasParameter($confParameter)) {
-            $default_options['e'] = $this->container->getParameter($confParameter);
-        }
 
         $request = $this->container->get('request');
 
-        $requestBaseUrl = $request->getBaseUrl();
+        $options = [
+            'e' => $request->getBaseUrl(), // base_url
+            'scheme' => $request->getScheme(), //
+            'host' => $request->getHost(), //
+            'prefix' => $request->getLocale(), // locale -???
+        ];
 
-        if (!empty($requestBaseUrl)) {
-            $default_options['e'] = $requestBaseUrl;
-        }
-
-        if (empty($default_options['e'])) {
-            $default_options['e'] = '/';
-        }
-
-        $default_options['scheme'] = $request->getScheme();
-
-        $default_options['host'] = $request->getHost();
 
         $port = $request->getPort();
 
         if (!in_array($port, [80, 443])) {
-            $default_options['host'] .= ':'.$port;
+            $options['host'] .= ':'.$port;
         }
 
-        $default_options['prefix'] = $request->getLocale();
+        /*$confParameter = 'router.request_context.base_url';
+        if ($this->container->hasParameter($confParameter)) {
+            $default_options['e'] = $this->container->getParameter($confParameter);
+        }*/
 
         $output = 'if (undefined != fos) {';
-        $output .= '    fos.Router.j.b = '.json_encode($default_options);
+        $output .= '    fos.Router.j.b = '.json_encode($options);
         $output .= '}';
 
         return $output;

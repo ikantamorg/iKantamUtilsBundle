@@ -125,8 +125,14 @@ class UtilsExtension extends Twig_Extension
 
         $request = $this->container->get('request');
 
+        $requestBaseUrl = $request->getBaseUrl();
+
+        if (!empty($requestBaseUrl)) {
+            $default_options['e'] = $requestBaseUrl;
+        }
+
         if (empty($default_options['e'])) {
-            $default_options['e'] = $request->getBaseUrl();
+            $default_options['e'] = '/';
         }
 
         $default_options['scheme'] = $request->getScheme();
